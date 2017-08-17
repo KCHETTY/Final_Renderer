@@ -8,6 +8,8 @@ out vec4 colour;
 
 uniform sampler2D Texture_;
 uniform vec3 light_colour;
+uniform float shine_damper;
+uniform float reflection;
 
 void main( )
 {

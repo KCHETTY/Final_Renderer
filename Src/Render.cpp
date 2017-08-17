@@ -24,6 +24,11 @@ void Render::Render_( Text_Model &tmp, Shaders &shader )
     this->viewLoc = shader.GetUniformLocation( "view" );
     this->lightLoc = shader.GetUniformLocation( "light_pos" );
     this->colourLoc = shader.GetUniformLocation( "light_colour" );
+    //this->shineLoc = shader.GetUniformLocation( "shine_damper" );
+    //this->reflectionLoc = shader.GetUniformLocation( "reflection" );
+
+    //shader.load_float( this->shineLoc, 0.0f);
+    //shader.load_float( this->reflectionLoc, 0.0f);
 
     shader.load_matrix( this->projLoc, this->projection );
     shader.load_matrix( this->viewLoc, this->view_matrix );
@@ -45,7 +50,7 @@ void Render::Render_( Text_Model &tmp, Shaders &shader )
 
     //glActiveTexture( GL_TEXTURE0 );
     glBindTexture(GL_TEXTURE_2D, tmp.GetModelText().GetTextureID());
-    glUniform1i( glGetUniformLocation(shader.GetProgramID(), "OurText"), 0 );
+    glUniform1i( glGetUniformLocation(shader.GetProgramID(), "Texture_"), 0.0f );
 
     glDrawElements( GL_TRIANGLES, tmp.GetModel().GetVertexCount(), GL_UNSIGNED_INT, 0);
 

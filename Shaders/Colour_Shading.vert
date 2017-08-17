@@ -7,6 +7,7 @@ layout ( location = 2 )  in vec3 normal;
 out vec2 textures;
 out vec3 surface_normal;
 out vec3 toLightVector;
+out vec3 toCameraVector;
 
 uniform mat4 model; // converts locall co-ordinates to camera co-ordinates
 uniform mat4 scale; //

@@ -2,7 +2,7 @@
 
 int main()
 {
-    Render_Engine tmp("DEZZ NUTZ", 1920, 1080);
+    Render_Engine tmp("DEZZ NUTZ", 640, 640);
 
     tmp.init();
     tmp._render();

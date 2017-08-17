@@ -172,9 +172,9 @@ void Shaders::load_matrix( GLint location_id, glm::mat4 &matrix )
     glUniformMatrix4fv( location_id, 1, GL_FALSE, glm::value_ptr( matrix ) );
 }
 
-GLint Shaders::GetUniformLocation(const std::string & Uniform_name)
+GLint Shaders::GetUniformLocation(const std::string &Uniform_name)
 {
-	GLuint Location_ID;
+	GLint Location_ID;
 	Location_ID = glGetUniformLocation(program_id, Uniform_name.c_str());
 
 	if (GL_INVALID_INDEX == Location_ID)
@@ -182,7 +182,7 @@ GLint Shaders::GetUniformLocation(const std::string & Uniform_name)
 		std::cerr << "Location Id" << std::endl;
 	}
 
-	return GLuint(Location_ID);
+	return Location_ID;
 }
 
 void Shaders::add_attributes(const std::string &attr_name)

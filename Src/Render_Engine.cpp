@@ -40,11 +40,11 @@ void Render_Engine::_render()
     Render rend;
 
     Shaders test;
-    test.compile_shaders("/home/kchetty/Desktop/new_push/Shaders/Colour_Shading.vert", "/home/kchetty/Desktop/new_push/Shaders/Colour_Shasiner.frag");
+    test.compile_shaders("/home/kchetty/Desktop/tmper/Shaders/Colour_Shading.vert", "/home/kchetty/Desktop/tmper/Shaders/Colour_Shasiner.frag");
 
-    Model tmp = mod.Load_Object("/home/kchetty/Desktop/new_push/Object_files/dragon.obj");
+    Model tmp = mod.Load_Object("/home/kchetty/Desktop/tmper/Object_files/dwarf.obj");
 
-    GLuint ye = load.load_texture("/home/kchetty/Desktop/new_push/Textures/wildtextures-creased-gilded-decorative-paper-texture.jpg");
+    GLuint ye = load.load_texture("/home/kchetty/Desktop/tmper/Textures/wildtextures-creased-gilded-decorative-paper-texture.jpg");
     Model_Text tmo_nmoi( ye );
 
     std::cout << "Bef TEXT MODEL " << std::endl;
