@@ -24,11 +24,11 @@ void Render::Render_( Text_Model &tmp, Shaders &shader )
     this->viewLoc = shader.GetUniformLocation( "view" );
     this->lightLoc = shader.GetUniformLocation( "light_pos" );
     this->colourLoc = shader.GetUniformLocation( "light_colour" );
-    //this->shineLoc = shader.GetUniformLocation( "shine_damper" );
-    //this->reflectionLoc = shader.GetUniformLocation( "reflection" );
+    this->shineLoc = shader.GetUniformLocation( "shine_damper" );
+    this->reflectionLoc = shader.GetUniformLocation( "reflection" );
 
-    //shader.load_float( this->shineLoc, 0.0f);
-    //shader.load_float( this->reflectionLoc, 0.0f);
+    shader.load_float( this->shineLoc, 23.0f);
+    shader.load_float( this->reflectionLoc, 1.0f);
 
     shader.load_matrix( this->projLoc, this->projection );
     shader.load_matrix( this->viewLoc, this->view_matrix );

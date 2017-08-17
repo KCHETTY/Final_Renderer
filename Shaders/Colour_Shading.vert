@@ -25,4 +25,6 @@ void main( )
 
 	surface_normal = ( view * model * vec4(normal, 0.0f) ).xyz;
 	toLightVector = light_pos - world_pos.xyz;
+
+	toCameraVector = (inverse(view) * vec4( 0.0f, 0.0f, 0.0f, 1.0f )).xyz - world_pos.xyz;
 };

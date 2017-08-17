@@ -42,7 +42,7 @@ void Render_Engine::_render()
     Shaders test;
     test.compile_shaders("/home/kchetty/Desktop/tmper/Shaders/Colour_Shading.vert", "/home/kchetty/Desktop/tmper/Shaders/Colour_Shasiner.frag");
 
-    Model tmp = mod.Load_Object("/home/kchetty/Desktop/tmper/Object_files/dwarf.obj");
+    Model tmp = mod.Load_Object("/home/kchetty/Desktop/tmper/Object_files/dragon.obj");
 
     GLuint ye = load.load_texture("/home/kchetty/Desktop/tmper/Textures/wildtextures-creased-gilded-decorative-paper-texture.jpg");
     Model_Text tmo_nmoi( ye );
