@@ -9,7 +9,7 @@ void Render::Prep()
 
 void Render::SetProjection( GLfloat const &tmp_zoom )
 {
-    this->projection = glm::perspective( tmp_zoom, 640.0f / 640.0f, 1.0f, 10000.0f);
+    this->projection = glm::perspective( tmp_zoom, 1280.0f / 720.0f, 1.0f, 10000.0f);
 }
 
 void Render::SetViewMatrix( glm::mat4 const &tmp_matrix )
