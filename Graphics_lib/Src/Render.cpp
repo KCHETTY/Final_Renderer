@@ -7,6 +7,17 @@ void Render::Prep()
     glClear( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 }
 
+void Render::Load_Uniform( Shaders &shader )
+{
+    this->modelLoc = shader.GetUniformLocation( "model" );
+    this->projLoc = shader.GetUniformLocation( "projection" );
+    this->viewLoc = shader.GetUniformLocation( "view" );
+    this->lightLoc = shader.GetUniformLocation( "light_pos" );
+    this->colourLoc = shader.GetUniformLocation( "light_colour" );
+    this->shineLoc = shader.GetUniformLocation( "shine_damper" );
+    this->reflectionLoc = shader.GetUniformLocation( "reflection" );
+}
+
 void Render::SetProjection( GLfloat const &tmp_zoom )
 {
     this->projection = glm::perspective( tmp_zoom, 1280.0f / 720.0f, 1.0f, 10000.0f);
@@ -19,16 +30,8 @@ void Render::SetViewMatrix( glm::mat4 const &tmp_matrix )
 
 void Render::Render_( Text_Model &tmp, Shaders &shader )
 {
-    this->modelLoc = shader.GetUniformLocation( "model" );
-    this->projLoc = shader.GetUniformLocation( "projection" );
-    this->viewLoc = shader.GetUniformLocation( "view" );
-    this->lightLoc = shader.GetUniformLocation( "light_pos" );
-    this->colourLoc = shader.GetUniformLocation( "light_colour" );
-    this->shineLoc = shader.GetUniformLocation( "shine_damper" );
-    this->reflectionLoc = shader.GetUniformLocation( "reflection" );
-
-    shader.load_float( this->shineLoc, 23.0f);
-    shader.load_float( this->reflectionLoc, 1.0f);
+    shader.load_float( this->shineLoc, 4.0f);
+    shader.load_float( this->reflectionLoc, 0.5f);
 
     shader.load_matrix( this->projLoc, this->projection );
     shader.load_matrix( this->viewLoc, this->view_matrix );

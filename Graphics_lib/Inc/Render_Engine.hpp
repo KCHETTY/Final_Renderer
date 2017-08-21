@@ -32,6 +32,11 @@ class Render_Engine
         static GLfloat deltaTime;
         static GLfloat lastFrame;
 
+        Data_Loader load;
+        Object_Loader obj_load;
+        Render draw;
+        Shaders shader;
+
         Render_Engine();
 
     public:

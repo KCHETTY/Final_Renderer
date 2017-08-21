@@ -33,18 +33,14 @@ void Render_Engine::_render()
 {
     glEnable( GL_DEPTH_TEST );
     glEnable( GL_BLEND );
+    glEnable( GL_CULL_FACE );
+    glCullFace( GL_BACK );
     glBlendFunc( GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA );
 
-    Data_Loader load;
-    Object_Loader mod;
-    Render rend;
 
-    Shaders test;
-    test.compile_shaders("/home/kchetty/Desktop/tmper/Shaders/Colour_Shading.vert", "/home/kchetty/Desktop/tmper/Shaders/Colour_Shasiner.frag");
+    Model tmp = obj_load.Load_Object("/home/kchetty/Desktop/tmper/Object_files/nanosuit.obj");
 
-    Model tmp = mod.Load_Object("/home/kchetty/Desktop/tmper/Object_files/dragon.obj");
-
-    GLuint ye = load.load_texture("/home/kchetty/Desktop/tmper/Textures/wildtextures-creased-gilded-decorative-paper-texture.jpg");
+    GLuint ye = load.load_texture("/home/kchetty/Desktop/tmper/Textures/gras.png");
     Model_Text tmo_nmoi( ye );
 
     std::cout << "Bef TEXT MODEL " << std::endl;
@@ -62,23 +58,23 @@ void Render_Engine::_render()
         glfwPollEvents( ); // poll for and process events
         DoMovement();
 
-        glUseProgram( test.GetProgramID() );
+        glUseProgram( this->shader.GetProgramID() );
 
-        rend.SetProjection( Render_Engine::camera->GetZoom() );
+        this->draw.SetProjection( Render_Engine::camera->GetZoom() );
 
-        rend.Prep();
+        this->draw.Prep();
 
         //projection = glm::perspective( Render_Engine::camera->GetZoom() , (GLfloat)this->Screen_Width / (GLfloat)this->Screen_Height, 1.0f, 10000.0f);
 
         //glm::mat4 model_matrix;
         //model_matrix = glm::rotate( model_matrix, (GLfloat)glfwGetTime() * 1.0f, glm::vec3( 0.5f, 1.0f, 0.0f ));
         //view_matrix = glm::translate( view_matrix, glm::vec3( 0.0f, 0.0f, -2.0f) );
-        rend.SetViewMatrix(camera->GetViewMatrix());
+        this->draw.SetViewMatrix(camera->GetViewMatrix());
 
         //GLfloat angle = 20.0f * x;
         //model = glm::rotate( model, angle, glm::vec3( 0.0f, 0.0f, 0.0f ));
 
-        rend.Render_( ne, test );
+        this->draw.Render_( ne, this->shader );
 
         glfwSwapBuffers( Render_Engine::window );
     }
@@ -108,12 +104,8 @@ void Render_Engine::init()
         exit(2);
     }
 
-    std::cout << this->Screen_Width << "  " << this->Screen_Height << std::endl;
-
     glfwMakeContextCurrent( Render_Engine::window ); // Make the windows context current
     glfwGetFramebufferSize( Render_Engine::window, &this->Screen_Width, &this->Screen_Height );
-
-    std::cout << this->Screen_Width << "  " << this->Screen_Height << std::endl;
 
     glewExperimental = GL_TRUE; //stops glew crashing on OSX :-/
     if( glewInit() != GLEW_OK )
@@ -131,6 +123,10 @@ void Render_Engine::init()
     Render_Engine::camera = new Camera( glm::vec3( 0.0f, 0.0f, 3.0f) );
     lastX = this->Screen_Width / 2.0f;
     lastY = this->Screen_Height / 2.0f;
+
+    this->shader.compile_shaders("/home/kchetty/Desktop/tmper/Shaders/Colour_Shading.vert", "/home/kchetty/Desktop/tmper/Shaders/Colour_Shasiner.frag");
+
+    this->draw.Load_Uniform( this->shader );
 
     glViewport( 0.0f, 0.0f, this->Screen_Width, this->Screen_Height ); //this->Screen_Width, this->Screen_Height ); // specifies the part of the window to which OpenGL will draw (in pixels), convert from normalized to pixels.
 }

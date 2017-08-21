@@ -126,16 +126,14 @@ Model Object_Loader::Load_Object( const std::string &obj_path )
         else if (strncmp(line.c_str(), "vn ", 3) == 0)
             normals.push_back( glm::vec3( stof(gen[0]), stof(gen[1]), stof(gen[2]) ) );
         else if (strncmp(line.c_str(), "f ", 2) == 0)
-        {
-            if (texture_coordinates.size() > 0 && Texture_Array == NULL)
-                Texture_Array = new GLfloat[vertices.size() * 2];
-            if (normals.size() > 0 && Normals_Array == NULL)
-                Normals_Array = new GLfloat[vertices.size() * 3];
             faces.push_back( line );
-        }
-
         gen.clear();
 	}
+
+    if (texture_coordinates.size() > 0 && Texture_Array == NULL)
+        Texture_Array = new GLfloat[vertices.size() * 2];
+    if (normals.size() > 0 && Normals_Array == NULL)
+        Normals_Array = new GLfloat[vertices.size() * 3];
 
     file.close();
 

@@ -25,6 +25,7 @@ class Render
 
         void SetViewMatrix( glm::mat4 const &tmp_matrix );
         void SetProjection( GLfloat const &tmp_zoom );
+        void Load_Uniform( Shaders &shader );
         void Prep();
         void Render_( Text_Model &tmp, Shaders &shader );
 
